@@ -27,7 +27,7 @@ public class Queue<T> implements IQueue<T> {
         Iterator<T> iterator = new Iterator<T>(this.firstItem);
 
         while (iterator.next()) {
-            if (iterator.currentItem.getItem() == desiredItem) return true;
+            if (desiredItem.equals(iterator.currentItem.getItem())) return true;
         }
 
         return false;
@@ -51,11 +51,11 @@ public class Queue<T> implements IQueue<T> {
     }
 
     @Override
-    public T dequeue() throws ArrayIndexOutOfBoundsException {
+    public T dequeue() {
 
         Item<T> firstItem = this.firstItem;
 
-        if (this.count == 0) throw new ArrayIndexOutOfBoundsException();
+        if (this.count == 0) return null;
 
         if (this.count > 1) {
             this.firstItem = this.firstItem.getNext();
@@ -80,8 +80,14 @@ public class Queue<T> implements IQueue<T> {
     }
 
     private void show(Item<T> currentItem) {
+        if (currentItem == null) return;
         System.out.print("-> " + currentItem.getItem() + " ");
         if (currentItem.getNext() != null) show(currentItem.getNext());
+    }
+
+    public void clear() {
+        this.count = 0;
+        this.firstItem = this.lastItem = null;
     }
 
     public Item<T> getFirstItem() {

@@ -1,5 +1,7 @@
 .idea
 .vscode
+out/**/*
+src/.~13cb197c29efb884-13CB197C29EFB884!809176-72af2e.insyncdl
 
 # Compiled class file
 *.class
